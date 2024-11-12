@@ -9,7 +9,6 @@ const { href, title, body } = Astro.props;
 ---
 
 <li class="link-card">
-	<a href={href}>
 		<h2>
 			{title}
 			<span>&rarr;</span>
@@ -17,7 +16,7 @@ const { href, title, body } = Astro.props;
 		<p>
 			{body}
 		</p>
-	</a>
+		<slot />
 </li>
 <style>
 	.link-card {
