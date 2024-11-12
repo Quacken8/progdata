@@ -6,13 +6,8 @@ import Card from '../components/Card.astro';
 <Layout title="Progtester">
 	<main>
 		<h1>Progtester</h1>
-		<p class="instructions">
-			Vyber si domácí úlohu ze seznamu níže.
-		</p>
-		<!-- <Card
-		title="04"
-		body="Převoz zboží">
-	</Card> -->
+
+	<h2>Převoz zboží</h2>
 	<form 
 	action="http://0.0.0.0:8000"
 	method="get"
@@ -28,7 +23,7 @@ import Card from '../components/Card.astro';
 			
 		<label>
 			Úplný
-			<input type="radio" name="range" value="full">
+			<input type="radio" name="range" value="full" checked>
 		</label>
 			
 		<label>
@@ -42,12 +37,12 @@ import Card from '../components/Card.astro';
 			
 		<button type="submit">Generovat</button>
 	</form>
-	
+<!-- 	
 	<form>
 		<label for="file">Vlastní input</label>
 		<input type="file">
 		<button>Submit</button>
-	</form>
+	</form> -->
 		
 	</main>
 </Layout>

@@ -12,12 +12,18 @@ generate_vehicles() {
     num_vehicles=$1
     for ((i=0; i<num_vehicles; i++)); do
         a=$(generate_random_positive)
-        b=$((a + generate_random_positive % (UPPER_BOUND - a - 1))) 
+        b=$(generate_random_positive)
+        if ((a > b)); then
+            tmp=$a
+            a=$b
+            b=$tmp
+        fi
         c=$(generate_random_positive % 50)
-        ((c=c+1))
         ((c = c % 50))
+        ((c=c+1))
         d=$(generate_random_positive % 50)
         ((d = d % 50))
+        ((d = d+1))
         list+="[$a-$b,$c,$d]"
         if [ "$i" -lt $((num_vehicles - 1)) ]; then
             list+=","
