@@ -10,7 +10,7 @@ async function generateTests(
   await Deno.mkdir(tmpDir, { recursive: true });
 
   for (let i = 0; i < fileNum; i++) {
-    const genProcess = new Deno.Command(`./homeworks/${hwNum}/gen.sh`, {
+    const genProcess = new Deno.Command(`homeworks/${hwNum}/gen.sh`, {
       args: [testsPerFile.toFixed(0), range],
       stdout: "piped",
     }).spawn();
@@ -24,7 +24,7 @@ async function generateTests(
     const inputFile = await Deno.open(`${tmpDir}/${i}_in.txt`, {
       read: true,
     });
-    const outProcess = new Deno.Command(`./homeworks/${hwNum}/${hwNum}.out`, {
+    const outProcess = new Deno.Command(`homeworks/${hwNum}/${hwNum}.out`, {
       stdin: "piped",
       stdout: "piped",
     }).spawn();
@@ -39,14 +39,13 @@ async function generateTests(
   }
 
   const tarProcess = new Deno.Command("tar", {
-    args: ["-cf", "sample.tar", `${tmpDir}`],
+    args: ["-cf", `${tmpDir}/sample.tar`, `${tmpDir}`],
   }).spawn();
 
   await tarProcess.status;
 
-  const tarFile = await Deno.readFile("sample.tar");
+  const tarFile = await Deno.readFile(`${tmpDir}/sample.tar`);
   await Deno.remove(tmpDir, { recursive: true });
-  await Deno.remove("sample.tar");
 
   return tarFile;
 }
