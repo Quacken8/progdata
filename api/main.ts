@@ -6,7 +6,7 @@ async function generateTests(
   testsPerFile: number,
   range: "small" | "full"
 ) {
-  const tmpDir = `tmp`;
+  const tmpDir = `../tmp`;
   await Deno.mkdir(tmpDir, { recursive: true });
 
   for (let i = 0; i < fileNum; i++) {
