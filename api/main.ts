@@ -66,7 +66,9 @@ export default async (req: Request) => {
       },
     });
   } catch (error) {
-    const fs = [...Deno.readDirSync("api/")].map((f) => f.name).join("\n");
+    const fs = [...Deno.readDirSync(".vercel/output")]
+      .map((f) => f.name)
+      .join("\n");
     return new Response(`error: ${(error as Error).message} \n\n ${fs}`, {
       status: 500,
     });
