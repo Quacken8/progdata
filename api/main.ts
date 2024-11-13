@@ -66,7 +66,7 @@ export default async (req: Request) => {
       },
     });
   } catch (error) {
-    const fs = (await new Deno.Command("ls -R").spawn().output()).stdout;
+    const fs = [...Deno.readDirSync(".")].map((f) => f.name).join("\n");
     return new Response(fs, { status: 500 });
   }
 };
