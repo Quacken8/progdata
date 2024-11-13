@@ -51,7 +51,7 @@ async function generateTests(
   return tarFile;
 }
 
-Deno.serve(async (req) => {
+export default async (req: Request) => {
   const url = new URL(req.url);
   const hwNum = url.searchParams.get("hwNum")?.padStart(2, "0");
   const fileNum = Number(url.searchParams.get("fileNum"));
@@ -69,4 +69,4 @@ Deno.serve(async (req) => {
   } catch (error) {
     return new Response(`Error: ${(error as Error).message}`, { status: 500 });
   }
-});
+};
